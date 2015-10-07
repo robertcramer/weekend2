@@ -1,23 +1,38 @@
-require 'pry'
-
-require './human'
 require './game'
-require './computer'
 require './board'
 
+require 'pry'
 
 
+class Play
 
-playagain = "y"
-until playagain == "n"
+	def initialize
+		@board = Board.new
+		@game = Game.new
+	end
 
-puts "Welcome to Tic-Tac-Toe!"
 
-GameBoard.new.show_board
+	def tictactoe
+		@game.greeting
+		@board.show_board
+		player_1 = "X"
+		player_2 = "O"
+		current_player = player_1
+		until @game.game_over
+			puts "#{current_player}'s Turn"
+			@board.board[gets.chomp.to_i-1] = current_player
+			@board.show_board
+			if current_player == player_1
+				current_player = player_2
+			else
+				current_player = player_1
+			end
+		end
+		@game.postmortem
+	end
 
-PlayGame.new
-
-puts "Would you like to play again? y/n"
-playagain = gets.chomp.downcase
 end
+
+play = Play.new
+play.tictactoe
 
