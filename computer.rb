@@ -1,9 +1,14 @@
-class ComputerPlayer
+class Computer
 
-	def initialize
+	def initialize(player)
+		@player = player
 	end
 
-	def take_turn
+	def player
+		@player
+	end
+
+	def 
 		until GameBoard.available_moves.include(move)
 		move = rand(1..9)
 		end

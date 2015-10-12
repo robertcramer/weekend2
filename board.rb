@@ -15,6 +15,23 @@ class Board
      		#{@board[6]} | #{@board[7]} | #{@board[8]}
   		"
   	end
+
+  	def win?
+		WIN.any? do |x,y,z|
+			@board[x] == @board[y] && @board[y] == @board[z]
+		end
+	end
+
+
+	def available_moves 
+		@board.reject { |x| x.is_a?(String) }
+	end
+
+	def draw?
+		available_moves.empty?
+	end
+
+
 end
 
 
